@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Form, Card, Image } from 'react-bootstrap';
-import { LoaderButton } from '../../widgets';
-import logo from '../../resources/images/logo.png';
+import { LoaderButton, SVGLogo as Logo } from '../../widgets';
 import validator from 'validator';
+import { routes } from '../../Routes';
 
 class Login extends Component {
     state = { loading: false, email: '', password: '', emailError: false, error: false };
@@ -10,10 +10,10 @@ class Login extends Component {
     _handleSubmit = event => {
         event.preventDefault();
 
+        // Validations
         const { email, password } = this.state;
 
-        // Validations
-        if (!email && !password) {
+        if (!email || !password) {
             return this.setState({ error: true });
         }
 
@@ -21,10 +21,13 @@ class Login extends Component {
             return this.setState({ emailError: true });
         }
 
-        // Call Login
+        // Call Login request
         this.setState({ loading: true });
         this.setTimerID = setTimeout(() => {
             this.setState({ loading: false });
+
+            // push to feed route
+            this.props.history.push(routes.feed());
         }, 1000);
     };
 
@@ -42,13 +45,7 @@ class Login extends Component {
         return (
             <Container className="row col-md-12 justify-content-center m-0">
                 <Card body className="row col-md-5 mt-5 pb-3">
-                    <Image
-                        src={logo}
-                        alt="logo"
-                        width="200"
-                        height="60"
-                        className="mt-3 mx-auto d-block"
-                    />
+                    <Logo className="mt-3 mx-auto d-block" />
                     <Form onSubmit={this._handleSubmit}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
