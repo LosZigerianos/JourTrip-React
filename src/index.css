@@ -1,11 +1,9 @@
-
 @font-face {
   font-family: 'Apercu Regular';
   font-style: normal;
   font-weight: normal;
   src: local('Apercu Regular'), url('resources/fonts/Apercu_Regular.woff') format('woff');
 }
-
 
 @font-face {
   font-family: 'Apercu Italic';
@@ -14,14 +12,12 @@
   src: local('Apercu Italic'), url('resources/fonts/Apercu Italic.woff') format('woff');
 }
 
-
 @font-face {
   font-family: 'Apercu Light';
   font-style: normal;
   font-weight: normal;
   src: local('Apercu Light'), url('resources/fonts/Apercu Light.woff') format('woff');
 }
-
 
 @font-face {
   font-family: 'Apercu Light Italic';
@@ -30,14 +26,12 @@
   src: local('Apercu Light Italic'), url('resources/fonts/Apercu Light Italic.woff') format('woff');
 }
 
-
 @font-face {
   font-family: 'Apercu Medium';
   font-style: normal;
   font-weight: normal;
   src: local('Apercu Medium'), url('resources/fonts/Apercu Medium.woff') format('woff');
 }
-
 
 @font-face {
   font-family: 'Apercu Medium Italic';
@@ -46,14 +40,12 @@
   src: local('Apercu Medium Italic'), url('resources/fonts/Apercu Medium Italic.woff') format('woff');
 }
 
-
 @font-face {
   font-family: 'Apercu Bold';
   font-style: normal;
   font-weight: normal;
   src: local('Apercu Bold'), url('resources/fonts/Apercu Bold.woff') format('woff');
 }
-
 
 @font-face {
   font-family: 'Apercu Bold Italic';
@@ -62,7 +54,6 @@
   src: local('Apercu Bold Italic'), url('resources/fonts/Apercu Bold Italic.woff') format('woff');
 }
 
-
 @font-face {
   font-family: 'Apercu Mono Regular';
   font-style: normal;
@@ -70,9 +61,16 @@
   src: local('Apercu Mono Regular'), url('resources/fonts/Apercu Mono.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'Bukhari Script';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Bukhari Script'), url('resources/fonts/Bukhari Script.ttf') format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: "Apercu Regular, Apercu Italic, Apercu Light, Apercu Light Italic, Apercu Medium, Apercu Medium Italic, Apercu Bold, Apercu Bold Italic, Apercu Mono Regular";
+  font-family: "Bukhari Script, Apercu Regular, Apercu Italic, Apercu Light, Apercu Light Italic, Apercu Medium, Apercu Medium Italic, Apercu Bold, Apercu Bold Italic, Apercu Mono Regular";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgba(0,0,0,0.08);
@@ -83,9 +81,14 @@ code {
     monospace;
 }
 
+.bg-theme {
+  background-color: rgba(90,97,116,1);
+}
+
 .btn-theme {
   background-color: rgba(90,97,116,1);
-  border-color: rgba(90,97,116,1);  
+  border-color: rgba(90,97,116,1);
+  border-radius: 80rem;
 }
 
 .btn-theme:hover {
@@ -107,4 +110,12 @@ code {
   color: #fff;
   background-color: rgb(106, 110, 122) !important;
   border-color: rgb(106, 110, 122) !important;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: rgb(106, 110, 122) !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.08rem rgba(75, 80, 94, 0.4) !important;
 }

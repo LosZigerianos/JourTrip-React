@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const LoaderButton = props => {
+const LoaderButton = ({loading, ...props}) => {
     return (
-        <Button disabled={props.loading} {...props}>
-            {props.loading ? 'LOADING...' : props.children}
+        <Button disabled={loading} {...props}>
+            {loading ? 'LOADING...' : props.children}
         </Button>
     );
 };
