@@ -73,7 +73,7 @@ body {
   font-family: "Bukhari Script, Apercu Regular, Apercu Italic, Apercu Light, Apercu Light Italic, Apercu Medium, Apercu Medium Italic, Apercu Bold, Apercu Bold Italic, Apercu Mono Regular";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(0,0,0,0.08);
+  background-color: rgba(0,0,0,0.03);
 }
 
 code {
@@ -83,6 +83,10 @@ code {
 
 .bg-theme {
   background-color: rgba(90,97,116,1);
+}
+
+.color-theme {
+  color: rgba(90,97,116,1) !important;
 }
 
 .btn-theme {
