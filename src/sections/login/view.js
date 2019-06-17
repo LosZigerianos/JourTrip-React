@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Card, Image } from 'react-bootstrap';
+import { Container, Form, Card } from 'react-bootstrap';
 import { LoaderButton, SVGLogo as Logo } from '../../widgets';
 import validator from 'validator';
 import { routes } from '../../Routes';

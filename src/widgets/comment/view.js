@@ -18,7 +18,7 @@ const Comment = props => (
 );
 
 Comment.defaultProps = {
-    details: { location: { photos: [] } },
+    details: {},
     containerClassName: '',
     renderUser: () => {},
     renderPhoto: () => {},
