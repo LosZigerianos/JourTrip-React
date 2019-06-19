@@ -47,10 +47,19 @@ export function login(user) {
                 const token = response.data.data;
                 dispatch(updateUser({ ...user, token }));
 
+                // Add token in axios for all request next
+                api.configureToken(token);
+
+                // fetching false
+                dispatch(updateFetching(false));
+
                 // redirect to Feed route
                 history.push(routes.feed());
             })
             .catch(err => {
+                // fetching false
+                dispatch(updateFetching(false));
+
                 // Error Response
                 if (err.response) {
                     const { status: statusCode } = err.response;
@@ -62,9 +71,6 @@ export function login(user) {
 
                 // Network Error
                 alert('Network error');
-            })
-            .finally(data => {
-                dispatch(updateFetching(false));
             });
     };
 }

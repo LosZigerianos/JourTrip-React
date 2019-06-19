@@ -1,22 +1,23 @@
 import { connect } from 'react-redux';
-import * as authActions from '../../redux/auth/action';
+import * as feedActions from '../../redux/feed/action';
 import View from './view';
 
 const mapStateToProps = state => {
     return {
-        user: state.auth.user,
-        isAuthenticated: state.auth.isAuthenticated,
-        isFetching: state.auth.isFetching,
-        isLoginError: state.auth.isLoginError,
+        list: state.feed.list,
+        isFetching: state.feed.isFetching,
     };
 };
 
-// const mapDispatchToProps = (dispatch, props) => {
-//     return {
-//         login: user => {
-//             dispatch(authActions.login(user));
-//         },
-//     };
-// };
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        initFeedList: () => {
+            dispatch(feedActions.initFeedList());
+        },
+    };
+};
 
-export default connect(mapStateToProps)(View);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(View);

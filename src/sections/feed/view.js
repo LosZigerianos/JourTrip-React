@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Comment, Navbar, UserInfo, PhotoInfo } from '../../widgets';
 import './style.css';
@@ -81,47 +81,66 @@ const TIMELINE_COMMENTS = [
     },
 ];
 
-const Feed = () => (
-    <>
-        <Navbar />
-        <Container className="mx-xs-0 px-xs-0">
-            <Row className="mx-md-5">
-                <Col xs="12" md="8" className="m-0 p-0">
-                    {TIMELINE_COMMENTS.map(comment => (
-                        <Comment
-                            key={comment._id}
-                            details={comment}
-                            containerClassName="mb-3 mb-md-5"
-                            renderUser={() => (
+class Feed extends Component {
+    constructor(props) {
+        super(props);
+        props.initFeedList();
+    }
+    render() {
+        const { list, isFetching } = this.props;
+
+        if (isFetching) {
+            return <p>Loading....</p>;
+        }
+
+        return (
+            <>
+                <Navbar />
+                <Container className="mx-xs-0 px-xs-0">
+                    <Row className="mx-md-5">
+                        <Col xs="12" md="8" className="m-0 p-0">
+                            {list.map(comment => (
+                                <Comment
+                                    key={comment._id}
+                                    details={comment}
+                                    containerClassName="mb-3 mb-md-5"
+                                    renderUser={() => (
+                                        <UserInfo
+                                            name={comment.user.fullname}
+                                            photoSrc={comment.user.photo}
+                                        />
+                                    )}
+                                    renderPhoto={() => (
+                                        <PhotoInfo
+                                            url={comment.location.photos[0]}
+                                            name={comment.location.name}
+                                            description={comment.location.city}
+                                        />
+                                    )}
+                                />
+                            ))}
+                        </Col>
+                        <Col md="3" className="d-none d-lg-block col-fixed">
+                            <p>
                                 <UserInfo
-                                    name={comment.user.fullname}
-                                    photoSrc={comment.user.photo}
+                                    name="User name connected"
+                                    photoWidth="50"
+                                    photoHeight="50"
+                                    photoSrc="https://randomuser.me/api/portraits/men/91.jpg"
                                 />
-                            )}
-                            renderPhoto={() => (
-                                <PhotoInfo
-                                    url={comment.location.photos[0]}
-                                    name={comment.location.name}
-                                    description={comment.location.city}
-                                />
-                            )}
-                        />
-                    ))}
-                </Col>
-                <Col md="3" className="d-none d-lg-block col-fixed">
-                    <p>
-                        <UserInfo
-                            name="User name connected"
-                            photoWidth="50"
-                            photoHeight="50"
-                            photoSrc="https://randomuser.me/api/portraits/men/91.jpg"
-                        />
-                    </p>
-                    {/* <p>Near locations list</p> */}
-                </Col>
-            </Row>
-        </Container>
-    </>
-);
+                            </p>
+                            {/* <p>Near locations list</p> */}
+                        </Col>
+                    </Row>
+                </Container>
+            </>
+        );
+    }
+}
+
+Feed.defaultProps = {
+    list: [],
+    isFetching: false,
+};
 
 export default Feed;

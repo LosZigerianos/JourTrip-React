@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import * as reducers from '../redux';
 
 // constants
-const JOURTRIP_STATE = 'JOURTRIP_STATE';
+export const JOURTRIP_STATE = 'JOURTRIP_STATE';
 
 // Persisting data using local storage
 let initState = {};
