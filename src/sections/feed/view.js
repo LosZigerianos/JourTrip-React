@@ -108,7 +108,7 @@ const Feed = () => (
                         />
                     ))}
                 </Col>
-                <Col md="3" className="d-none d-lg-block">
+                <Col md="3" className="d-none d-lg-block col-fixed">
                     <p>
                         <UserInfo
                             name="User name connected"
@@ -117,7 +117,7 @@ const Feed = () => (
                             photoSrc="https://randomuser.me/api/portraits/men/91.jpg"
                         />
                     </p>
-                    <p>Near locations list</p>
+                    {/* <p>Near locations list</p> */}
                 </Col>
             </Row>
         </Container>

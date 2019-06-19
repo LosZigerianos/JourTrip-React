@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Container, Form, Card } from 'react-bootstrap';
 import { LoaderButton, SVGLogo as Logo } from '../../widgets';
 import validator from 'validator';
-import { routes } from '../../Routes';
 
 class Login extends Component {
-    state = { loading: false, email: '', password: '', emailError: false, error: false };
+    state = { email: '', password: '', emailError: false, error: false };
 
     _handleSubmit = event => {
         event.preventDefault();
@@ -22,13 +21,8 @@ class Login extends Component {
         }
 
         // Call Login request
-        this.setState({ loading: true });
-        this.setTimerID = setTimeout(() => {
-            this.setState({ loading: false });
-
-            // push to feed route
-            this.props.history.push(routes.feed());
-        }, 1000);
+        const userCredentials = { email, password };
+        this.props.login(userCredentials);
     };
 
     _onChange = event => {
@@ -41,7 +35,8 @@ class Login extends Component {
     };
 
     render() {
-        const { loading, email, password, error, emailError } = this.state;
+        const { email, password, error, emailError } = this.state;
+        const { isFetching, isLoginError } = this.props;
         return (
             <Container className="row col-md-12 justify-content-center m-0">
                 <Card body className="row col-md-5 mt-5 pb-3">
@@ -70,7 +65,12 @@ class Login extends Component {
                                 onChange={this._onChange}
                             />
                         </Form.Group>
-                        <LoaderButton type="submit" block className="btn-theme" loading={loading}>
+                        <LoaderButton
+                            type="submit"
+                            block
+                            className="btn-theme"
+                            loading={isFetching}
+                        >
                             LOG IN
                         </LoaderButton>
                         {error && (
@@ -78,15 +78,22 @@ class Login extends Component {
                                 Email or password are required
                             </Form.Label>
                         )}
+                        {isLoginError && (
+                            <Form.Label className="text-danger">
+                                Incorrect credentials
+                            </Form.Label>
+                        )}
                     </Form>
                 </Card>
             </Container>
         );
     }
-
-    componentWillUnmount() {
-        clearTimeout(this.setTimerID);
-    }
 }
+
+Login.defaultProps = {
+    login: () => {},
+    isFetching: false,
+    isLoginError: false,
+};
 
 export default Login;
