@@ -10,17 +10,15 @@ class Feed extends Component {
     }
     render() {
         const { list, isFetching, user } = this.props;
-        if (isFetching) {
-            return <p>Loading....</p>;
-        }
-
         return (
             <>
                 <Navbar />
                 <Container className="mx-xs-0 px-xs-0">
                     <Row className="mx-md-5">
                         <Col xs="12" md="8" className="m-0 p-0">
-                            {list.length > 0 ? (
+                            {isFetching ? (
+                                <p className="text-center">Loading....</p>
+                            ) : list.length > 0 ? (
                                 list.map(comment => (
                                     <Comment
                                         key={comment._id}

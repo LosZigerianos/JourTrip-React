@@ -1,7 +1,5 @@
 import axios from 'axios';
-import _ from 'lodash';
 import { BASE_URL } from '../config/api';
-import { JOURTRIP_STATE } from '../config/redux';
 
 export function configureAxios() {
     axios.defaults.baseURL = BASE_URL;
