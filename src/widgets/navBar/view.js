@@ -3,6 +3,8 @@ import Logo from '../../widgets/SVGLogo';
 import { Navbar, FormControl, Form } from 'react-bootstrap';
 import { FaUser, FaSearchLocation } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import './style.css';
 
 const ICON_SIZE = '1.8em';
@@ -24,7 +26,24 @@ const NavBar = props => (
                 <span className="pr-md-3 p-xs-0">
                     <FaSearchLocation />
                 </span>
-                <span>
+                <span
+                    onClick={() =>
+                        confirmAlert({
+                            title: 'Logout',
+                            message: 'Are you sure to do this.',
+                            buttons: [
+                                {
+                                    label: 'Yes',
+                                    onClick: () => props.logout(),
+                                },
+                                {
+                                    label: 'No',
+                                    onClick: () => {},
+                                },
+                            ],
+                        })
+                    }
+                >
                     <FaUser />
                 </span>
             </div>

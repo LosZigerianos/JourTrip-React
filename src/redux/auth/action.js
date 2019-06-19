@@ -24,7 +24,7 @@ function updateUser(value) {
     };
 }
 
-function logout() {
+export function logout() {
     return {
         type: types.AUTH_LOGOUT,
     };
